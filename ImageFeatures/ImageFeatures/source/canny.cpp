@@ -211,7 +211,8 @@ double feat::getCannyThresh(const Mat& inputArray, double percentage)
     minMaxLoc(inputArray, &minValue, &maxValue, NULL, NULL);
     double step = (maxValue - minValue) / nBins;
 
-    vector<unsigned> histBin(nBins,0);
+    // vector<unsigned> histBin(nBins,0);   //在VS2017上运行报错 vector out of range
+    vector<unsigned> histBin(nBins+1,0);    //这里+1 并不影响程序的执行
     for (int i = 0; i < inputArray.rows; i++)
     {
         const double* pData = inputArray.ptr<double>(i);
